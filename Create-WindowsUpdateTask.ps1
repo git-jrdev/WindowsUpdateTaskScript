@@ -104,17 +104,16 @@ if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
 }
 
 $taskTrigger = New-ScheduledTaskTrigger -AtLogon
-$taskTrigger.Delay = "PT2M"
 
 # Create the action to run the PowerShell script
 $taskAction = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$updateScriptPath`""
 
 # Define settings
-$taskSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -RunOnlyIfNetworkAvailable
+$taskSettings = New-ScheduledTaskSettingsSet -DontStopIfGoingOnBatteries -StartWhenAvailable -RunOnlyIfNetworkAvailable
 
 # Register the scheduled task to run with highest privileges (SYSTEM account)
 Register-ScheduledTask -TaskName $taskName -Description $taskDescription -Trigger $taskTrigger -Action $taskAction -Settings $taskSettings -User "SYSTEM" -RunLevel Highest
 
 Write-Output "Tarefa programada com sucesso: '$taskName'"
 Write-Output "O script de atualização do Windows foi instalado em: $updateScriptPath"
-Write-Output "Very Nice!"
+Write-Output "Very Nice My Friend!"
