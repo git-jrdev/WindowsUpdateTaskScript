@@ -117,3 +117,4 @@ Register-ScheduledTask -TaskName $taskName -Description $taskDescription -Trigge
 
 Write-Output "Tarefa programada com sucesso: '$taskName'"
 Write-Output "O script de atualização do Windows foi instalado em: $updateScriptPath"
+Write-Output "Very Nice!"
